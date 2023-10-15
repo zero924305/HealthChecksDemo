@@ -15,7 +15,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services
     .AddHealthChecks()
     .AddCheck("testing", () => HealthCheckResult.Healthy("test health")) //testing custom check
-    .AddCheck<MemoryHealthCheck>("Memory");
+    .AddCheck<MemoryHealthCheck>("Memory")
+    .AddCheck("Ping Google",new PingHealthCheck("www.google.com",100))
+    .AddCheck("Ping Bing", new PingHealthCheck("www.bing.com", 100));
 
 builder.Services.AddHealthChecksUI(opt =>
 {
