@@ -14,7 +14,7 @@ builder.Services.AddServerSideBlazor();
 //configure health checks
 builder.Services
     .AddHealthChecks()
-    .AddCheck("testing", () => HealthCheckResult.Healthy("test health"))
+    .AddCheck("testing", () => HealthCheckResult.Healthy("test health")) //testing custom check
     .AddCheck<MemoryHealthCheck>("Memory");
 
 builder.Services.AddHealthChecksUI(opt =>
