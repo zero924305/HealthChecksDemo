@@ -22,7 +22,8 @@ builder.Services
 builder.Services.AddHealthChecksUI(opt =>
 {
     opt.AddHealthCheckEndpoint("Health Check Demo API", "/_health");
-    opt.SetEvaluationTimeInSeconds(15);
+    opt.SetEvaluationTimeInSeconds(5);
+    opt.MaximumHistoryEntriesPerEndpoint(50);
 }).AddInMemoryStorage();
 
 builder.Services.AddSingleton<WeatherForecastService>();
@@ -42,7 +43,7 @@ app.UseHttpsRedirection();
 app.MapHealthChecks("/_health", new HealthCheckOptions
 {
     Predicate = _ => true,
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
 });
 
 app.MapHealthChecksUI(opt => opt.UIPath = "/dashboard");

@@ -3,6 +3,10 @@ using Microsoft.Extensions.Options;
 
 namespace BlazorDemo.HealthCheck;
 
+/// <summary>
+///  This Memory health check is to check the application total used memory,
+///  as default set to 1G
+/// </summary>
 public class MemoryHealthCheck : IHealthCheck
 {
     private readonly IOptionsMonitor<MemoryCheckOptions> _options;
